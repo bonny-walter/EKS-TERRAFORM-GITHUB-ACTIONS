@@ -25,7 +25,7 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
 
 # Create an S3 bucket
 resource "aws_s3_bucket" "example_bucket" {
-  bucket        = "my-example-bucket-unique-name"
+  bucket        = "bonny-aws-bucket"
   
   force_destroy = true       # Optional: Allow bucket deletion even if it has objects
 

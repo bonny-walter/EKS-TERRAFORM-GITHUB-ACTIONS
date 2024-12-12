@@ -7,7 +7,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "my-example-bucket-unique-name"
+    bucket         = "bonny-aws-bucket"
     region         = "us-east-2"
     key            = "eks/terraform.tfstate"
     dynamodb_table = "terraform-state-lock"
