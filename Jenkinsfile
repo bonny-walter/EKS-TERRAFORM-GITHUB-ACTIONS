@@ -21,6 +21,18 @@ pipeline {
             }
         }
 
+        stage('create s3 and dynamodb') {
+            steps {
+                sh '''
+                  cd EKS-TERRAFORM-GITHUB-ACTIONS/eks/backend 
+                  terraform init
+                  terraform plan
+                  terraform apply --auto-approve
+                  '''
+
+            }
+        }
+
         stage('Terraform init') {
             steps {
                 sh 'cd EKS-TERRAFORM-GITHUB-ACTIONS/eks  && terraform init'
