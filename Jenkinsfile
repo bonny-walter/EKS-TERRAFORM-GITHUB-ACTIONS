@@ -25,6 +25,7 @@ pipeline {
             steps {
                 sh '''
                   cd EKS-TERRAFORM-GITHUB-ACTIONS/eks/backend 
+                  terraform destroy --auto-approve
                   terraform init
                   terraform plan
                   terraform apply --auto-approve
