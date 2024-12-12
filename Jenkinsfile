@@ -21,60 +21,61 @@ pipeline {
             }
         }
 
-        stage('create s3 and dynamodb') {
-            steps {
-                sh '''
-                  cd EKS-TERRAFORM-GITHUB-ACTIONS/eks/backend 
-                  
-                  terraform init
-                  terraform plan
-                  terraform apply --auto-approve
-                  '''
+   //     stage('create s3 and dynamodb') {
+    //        steps {
+      //          sh '''
+       //           cd EKS-TERRAFORM-GITHUB-ACTIONS/eks/backend 
+         //         
+           //       terraform init
+             //     terraform plan
+               //   terraform apply --auto-approve
+                 // '''
+///
+   //         }
+     //   }
 
-            }
-        }
+       // stage('Terraform init') {
+         //   steps {
+           //     sh 'cd EKS-TERRAFORM-GITHUB-ACTIONS/eks  && terraform init'
+            //}
+        //}
 
-        stage('Terraform init') {
-            steps {
-                sh 'cd EKS-TERRAFORM-GITHUB-ACTIONS/eks  && terraform init'
-            }
-        }
+      //  stage('Plan') { 
+        //    steps {
+        //        sh '''
+          //          cd EKS-TERRAFORM-GITHUB-ACTIONS/eks 
+            //        terraform plan -out=tfplan
+              //      terraform show -no-color tfplan > tfplan.txt
+                //   ''' 
+           // }
+       // }
 
-        stage('Plan') { 
-            steps {
-                sh '''
-                    cd EKS-TERRAFORM-GITHUB-ACTIONS/eks 
-                    terraform plan -out=tfplan
-                    terraform show -no-color tfplan > tfplan.txt
-                   ''' 
-            }
-        }
+  //      stage('Approval to Deploy') {
+    //        steps {
+      //          input message: 'Approve deployment to EKS?', ok: 'Deploy'
+        //    }
+       // }
 
-        stage('Approval to Deploy') {
-            steps {
-                input message: 'Approve deployment to EKS?', ok: 'Deploy'
-            }
-        }
+    //    stage('Apply') {
+      //      steps {
+        //        sh '''
+          //          cd EKS-TERRAFORM-GITHUB-ACTIONS/eks 
+            //        terraform apply --auto-approve
+              //    '''  
+           // }
+        //}
 
-        stage('Apply') {
-            steps {
-                sh '''
-                    cd EKS-TERRAFORM-GITHUB-ACTIONS/eks 
-                    terraform apply --auto-approve
-                  '''  
-            }
-        }
-
-        stage('Approval to Destroy') {
-            steps {
-                input message: 'Approve deletion of EKS?', ok: 'Destroy'
-            }
-        }
+     //   stage('Approval to Destroy') {
+     //       steps {
+     //           input message: 'Approve deletion of EKS?', ok: 'Destroy'
+      //      }
+     //   }
 
         stage('Destroy') {
             steps {
                 sh '''
                     cd EKS-TERRAFORM-GITHUB-ACTIONS/eks 
+                    terraform init
                     terraform destroy --auto-approve
                   '''
             }
