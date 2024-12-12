@@ -69,7 +69,7 @@ resource "aws_iam_role" "eks_oidc" {
 }
 
 resource "aws_iam_policy" "eks-oidc-policy" {
-  name = "test-policy"
+  name = "test1203-policy"
 
   policy = jsonencode({
     Statement = [{
